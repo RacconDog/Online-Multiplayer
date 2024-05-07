@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7509324928823637924}
   - component: {fileID: 6040407659661033084}
   - component: {fileID: 5266313595005303011}
+  - component: {fileID: 3515679845972988858}
   - component: {fileID: 5772440872369201899}
   - component: {fileID: 3761561192509383039}
   m_Layer: 0
@@ -90,6 +91,22 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &3515679845972988858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100926734495177078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 488429293fc55884aba0f440c0f06378, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audibleDistance: 30
+  conversationalDistance: 1
+  audioFadeIntensityByDistance: 1
+  cam: {fileID: 0}
 --- !u!114 &5772440872369201899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +123,7 @@ MonoBehaviour:
   rb: {fileID: 3761561192509383039}
   moveSpeed: 150
   offset: {x: 0, y: 1, z: 0}
+  vc: {fileID: 3515679845972988858}
 --- !u!54 &3761561192509383039
 Rigidbody:
   m_ObjectHideFlags: 0

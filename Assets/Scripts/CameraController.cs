@@ -20,9 +20,6 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         if (! playerSpawned) return;
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         
         transform.parent.position = player.transform.position + offset;
 

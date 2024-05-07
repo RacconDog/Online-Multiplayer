@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.Netcode;
 using UnityEngine;
+using Unity.Services.Core;
+using Unity.Services.Vivox;
+
 
 public class PlayerNetwork : NetworkBehaviour
 {
@@ -11,10 +14,13 @@ public class PlayerNetwork : NetworkBehaviour
     [SerializeField] float moveSpeed = 3f;
 
     [SerializeField] Vector3 offset;
+    [SerializeField] VoiceChat vc;
 
     public override void OnNetworkSpawn()
     {
         if (! IsOwner) return;
+
+
         GameObject playerCamera = GameObject.Find("Camera");
         
         playerCamera.GetComponent<CameraController>().orientation = orientation;
@@ -28,7 +34,20 @@ public class PlayerNetwork : NetworkBehaviour
     {
         if (! IsOwner) return;
 
-        //movement
+        if (Input.GetKeyDown(KeyCode.BackQuote))
+        {
+            if (Cursor.lockState == CursorLockMode.Locked)
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+        }
+        
         Vector3 moveDir = new Vector3(0, 0, 0);
 
         float hInput = Input.GetAxisRaw("Horizontal");

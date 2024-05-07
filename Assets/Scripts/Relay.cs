@@ -14,8 +14,8 @@ public class Relay : MonoBehaviour
     [SerializeField] int maxConnections;
     private async void Start()
     {
-        DebugLogConsole.AddCommand("CreateRelay", "Creates a relay", CreateRelay);
-        DebugLogConsole.AddCommand<string>("JoinRelay", "Joins relay", JoinRelay);
+        DebugLogConsole.AddCommand("Host", "Creates a relay", CreateRelay);
+        DebugLogConsole.AddCommand<string>("Join", "Joins relay", JoinRelay);
 
         await UnityServices.InitializeAsync();
 
@@ -28,7 +28,7 @@ public class Relay : MonoBehaviour
     async void CreateRelay()
     {
         try {
-            Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);
+            Allocation allocation = await RelayService.Instance.CreateAllocationAsync(3);
 
             string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
 
