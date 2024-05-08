@@ -12,6 +12,8 @@ public class PlayerNetwork : NetworkBehaviour
     [SerializeField] Transform orientation;
     [SerializeField] Rigidbody rb;
     [SerializeField] float moveSpeed = 3f;
+    [SerializeField] float maxSpeed = 5f;
+    [SerializeField] float jumpForce = 5f;
 
     [SerializeField] Vector3 offset;
     [SerializeField] VoiceChat vc;
@@ -19,8 +21,7 @@ public class PlayerNetwork : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         if (! IsOwner) return;
-
-
+        
         GameObject playerCamera = GameObject.Find("Camera");
         
         playerCamera.GetComponent<CameraController>().orientation = orientation;
@@ -33,6 +34,17 @@ public class PlayerNetwork : NetworkBehaviour
     void Update()
     {
         if (! IsOwner) return;
+
+        Vector3 clampVel = rb.velocity;
+        clampVel.x = Mathf.Clamp(clampVel.x, maxSpeed * -1, maxSpeed);
+        clampVel.z = Mathf.Clamp(clampVel.z, maxSpeed * -1, maxSpeed);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * jumpForce * 100);
+        }
+
+        rb.velocity = clampVel;
 
         if (Input.GetKeyDown(KeyCode.BackQuote))
         {
