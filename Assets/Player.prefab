@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3515679845972988858}
   - component: {fileID: 5772440872369201899}
   - component: {fileID: 3761561192509383039}
+  - component: {fileID: 340008353165037353}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -121,8 +122,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 3916474824002509408}
   rb: {fileID: 3761561192509383039}
-  moveSpeed: 300
-  maxSpeed: 300
+  moveSpeed: 400
+  maxSpeed: 5
+  jumpForce: 4
   offset: {x: 0, y: 0.5, z: 0}
   vc: {fileID: 3515679845972988858}
 --- !u!54 &3761561192509383039
@@ -134,7 +136,7 @@ Rigidbody:
   m_GameObject: {fileID: 100926734495177078}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -152,6 +154,27 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 1
+--- !u!65 &340008353165037353
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100926734495177078}
+  m_Material: {fileID: 13400000, guid: 0ff81f3947b6645e6a735242e9429420, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 2.0049527, z: 1}
+  m_Center: {x: 0, y: -0.0042330367, z: 0}
 --- !u!1 &3934163545795833900
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +186,6 @@ GameObject:
   - component: {fileID: 1723399714483696847}
   - component: {fileID: 6204644636764816828}
   - component: {fileID: 2358751678722863412}
-  - component: {fileID: 5180129911793267949}
   m_Layer: 0
   m_Name: PlayerObj
   m_TagString: Untagged
@@ -238,29 +260,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5180129911793267949
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3934163545795833900}
-  m_Material: {fileID: 13400000, guid: 0ff81f3947b6645e6a735242e9429420, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7406122942390465511
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,9 @@ public class PlayerNetwork : NetworkBehaviour
     {
         if (! IsOwner) return;
         
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         GameObject playerCamera = GameObject.Find("Camera");
         
         playerCamera.GetComponent<CameraController>().orientation = orientation;
@@ -35,16 +38,10 @@ public class PlayerNetwork : NetworkBehaviour
     {
         if (! IsOwner) return;
 
-        Vector3 clampVel = rb.velocity;
-        clampVel.x = Mathf.Clamp(clampVel.x, maxSpeed * -1, maxSpeed);
-        clampVel.z = Mathf.Clamp(clampVel.z, maxSpeed * -1, maxSpeed);
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.AddForce(Vector3.up * jumpForce * 100);
         }
-
-        rb.velocity = clampVel;
 
         if (Input.GetKeyDown(KeyCode.BackQuote))
         {
@@ -69,5 +66,10 @@ public class PlayerNetwork : NetworkBehaviour
 
         // moveDir 
         rb.AddForce(moveDir.normalized * moveSpeed * Time.deltaTime * 10f, ForceMode.Force);
+
+        Vector3 clampVel = rb.velocity;
+        clampVel.x = Mathf.Clamp(clampVel.x, maxSpeed * -1, maxSpeed);
+        clampVel.z = Mathf.Clamp(clampVel.z, maxSpeed * -1, maxSpeed);
+        rb.velocity = clampVel;
     }
 }
